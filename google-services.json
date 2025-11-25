@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "759358374114",
+    "project_id": "allhack-c2c4b",
+    "storage_bucket": "allhack-c2c4b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759358374114:android:5d3610946ce7a57ae89ebb",
+        "android_client_info": {
+          "package_name": "com.com.allhack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS5EAOGwhKU_PdIDSw0ZOa4BKa2NtsBoU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
